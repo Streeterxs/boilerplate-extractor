@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-extractor",
-  "version": "1.0.0",
+  "version": "1.0.40",
   "description": "This package helps extract copy files from a directory. This helps coders that write boilerplates first, before implementing use cases code.",
   "main": "./build/index",
   "scripts": {
@@ -8,8 +8,7 @@
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "babel": "babel-node --extensions \".es6,.js,.es,.jsx,.mjs,.ts,.tsx\"",
     "build": "npm run clear && babel src --extensions \".es6,.js,.es,.jsx,.mjs,.ts\" --ignore *.test.js --out-dir build --copy-files && tsc --emitDeclarationOnly",
-    "clear": "rimraf ./build",
-    "postinstall": "npm run build"
+    "clear": "rimraf ./build"
   },
   "author": "Afonso Araújo Neto",
   "license": "ISC",
