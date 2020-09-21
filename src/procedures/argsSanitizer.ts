@@ -1,11 +1,13 @@
 import { commands } from "../commands";
 
 import { extractSanitizer } from "./extractSanitizer";
+import { importSanitizer } from "./importSanitizer";
 
 export const argsSanitizer = (args: string[]) => {
 
     const sanitizers = {
-        extract: extractSanitizer
+        extract: extractSanitizer,
+        import: importSanitizer
     };
 
     try {
@@ -19,7 +21,10 @@ export const argsSanitizer = (args: string[]) => {
         }
 
         console.log('sanitizers[command]: ', sanitizers[command]);
-        return sanitizers[command];
+        return {
+            command,
+            sanitizer: sanitizers[command]
+        };
     } catch (err) {
 
         console.log('Error: ', err);

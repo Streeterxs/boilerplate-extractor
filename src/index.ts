@@ -3,24 +3,20 @@
 import path from 'path';
 
 import { argsSanitizer } from './procedures/argsSanitizer';
-import { extract } from './extract';
+import { boilerplateTransporter } from './boilerplateTransporter';
+import { boilerplates } from './boilerplates';
 
 
 const [, pathProcess, ...args] = process.argv;
 
-console.log('process.cwd: ', process.cwd());
 console.log('args: ', args);
-console.log('pathProcess: ', pathProcess);
-console.log('__dirname: ', __dirname);
-console.log('__filename: ', __filename);
 
-const extractSanitizer = argsSanitizer(args);
+const {command, sanitizer} = argsSanitizer(args);
 const rootCwdFn = path.join.bind(process.cwd());
-const {blName, extractPath, fileNames} = extractSanitizer(rootCwdFn, args);
+const {blName, inputedPath, fileNames} = sanitizer(rootCwdFn, args);
 
-const copyPath = path.join(__dirname, '..', 'boilerplates', blName);
+const boilerplatePath = boilerplates(blName);
 
-console.log('copyPath: ', copyPath);
-console.log('extractPath: ', extractPath);
+console.log('extractPath: ', inputedPath);
 
-extract(extractPath, copyPath, fileNames);
+boilerplateTransporter(command, inputedPath, boilerplatePath, fileNames)[command]();

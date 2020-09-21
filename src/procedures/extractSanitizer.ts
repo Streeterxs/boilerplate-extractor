@@ -27,6 +27,7 @@ export const extractSanitizer = (path: (...paths: string[]) => string, args: str
         } else {
 
             extractPath = path(args[1]);
+            console.log('extractPath: ', extractPath);
             fileNames = fs.readdirSync(extractPath);
         }
 
@@ -38,7 +39,7 @@ export const extractSanitizer = (path: (...paths: string[]) => string, args: str
         }
         return {
             blName,
-            extractPath: isExtractPathDefined ? extractPath : path(),
+            inputedPath: extractPath,
             fileNames
         };
     } catch (err) {
