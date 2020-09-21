@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const copyDirectoryFiles = (extractPath: string, copyPath: string, fileNames: string[]) => {
+export const extract = (extractPath: string, copyPath: string, fileNames: string[]) => {
 
     try {
 
@@ -19,5 +19,3 @@ const copyDirectoryFiles = (extractPath: string, copyPath: string, fileNames: st
         console.log('Error: ', err);
     }
 };
-
-export default copyDirectoryFiles;

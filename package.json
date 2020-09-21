@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-extractor",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "description": "This package helps extract copy files from a directory. This helps coders that write boilerplates first, before implementing use cases code.",
   "main": "./build/index",
   "scripts": {

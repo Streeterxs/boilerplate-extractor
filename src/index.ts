@@ -2,8 +2,9 @@
 
 import path from 'path';
 
-import namePathSn from './procedures/namePathSanitizer';
-import copyDirectoryFiles from './procedures/copyDirectoryFiles';
+import { argsSanitizer } from './procedures/argsSanitizer';
+import { extract } from './extract';
+
 
 const [, pathProcess, ...args] = process.argv;
 
@@ -13,12 +14,13 @@ console.log('pathProcess: ', pathProcess);
 console.log('__dirname: ', __dirname);
 console.log('__filename: ', __filename);
 
+const extractSanitizer = argsSanitizer(args);
 const rootCwdFn = path.join.bind(process.cwd());
-const {blName, extractPath, fileNames} = namePathSn(rootCwdFn, args);
+const {blName, extractPath, fileNames} = extractSanitizer(rootCwdFn, args);
 
 const copyPath = path.join(__dirname, '..', 'boilerplates', blName);
 
 console.log('copyPath: ', copyPath);
 console.log('extractPath: ', extractPath);
 
-copyDirectoryFiles(extractPath, copyPath, fileNames);
+extract(extractPath, copyPath, fileNames);
