@@ -26,7 +26,8 @@ const namePathSanitizer = (path: (...paths: string[]) => string, args: string[])
         }
         return {
             blName,
-            extractPath: isExtractPathDefined ? extractPath : path()
+            extractPath: isExtractPathDefined ? extractPath : path(),
+            fileNames
         };
     } catch (err) {
 
